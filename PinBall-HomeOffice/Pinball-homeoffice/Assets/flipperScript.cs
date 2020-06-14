@@ -16,10 +16,11 @@ public class flipperScript : MonoBehaviour
     public float rightFlipperMass;
     public float rightFlipperMotorSpeed;
 
-
-    public bool leftFlipperMotorOn;
-    public bool rightFlipperMotorOn;
-
+    public HingeJoint2D highRightFlipperHingeJoint;
+    private JointMotor2D highRightMotor2D;
+    public Rigidbody2D highRightFlipperRigidBody2D;
+    public float highRightFlipperMass;
+    public float highRightFlipperMotorSpeed;
 
     private void Start()
     {
@@ -28,6 +29,9 @@ public class flipperScript : MonoBehaviour
 
         rightMotor2D = rightFlipperHingeJoint.motor;
         rightMotor2D.motorSpeed = rightFlipperMotorSpeed;
+
+        highRightMotor2D = highRightFlipperHingeJoint.motor;
+        highRightMotor2D.motorSpeed = highRightFlipperMotorSpeed;
     }
 
     // Update is called once per frame
@@ -36,23 +40,22 @@ public class flipperScript : MonoBehaviour
         if (Input.GetButton("Left Flipper"))
         {
             leftFlipperHingeJoint.useMotor = true;
-            leftFlipperMotorOn = true;
         }
         else
         {
             leftFlipperHingeJoint.useMotor = false;
-            leftFlipperMotorOn = false;
         }
 
         if (Input.GetButton("Right Flipper"))
         {
             rightFlipperHingeJoint.useMotor = true;
-            rightFlipperMotorOn = true;
+
+            highRightFlipperHingeJoint.useMotor = true;
         }
         else
         {
             rightFlipperHingeJoint.useMotor = false;
-            rightFlipperMotorOn = false;
+            highRightFlipperHingeJoint.useMotor = false;
         }
     }
 }
